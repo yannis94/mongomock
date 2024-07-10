@@ -50,7 +50,6 @@ func (c TestConnection) ReadWireMessage(ctx context.Context) ([]byte, error) {
 		//fmt.Println("data ", len(data))
 		return data, nil
 	}
-	return nil, nil
 }
 
 func (c TestConnection) Description() description.Server {
