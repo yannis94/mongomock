@@ -41,7 +41,7 @@ func (c TestConnection) WriteWireMessage(ctx context.Context, b []byte) error {
 	return nil
 }
 
-func (c TestConnection) ReadWireMessage(ctx context.Context, dst []byte) ([]byte, error) {
+func (c TestConnection) ReadWireMessage(ctx context.Context) ([]byte, error) {
 	//fmt.Println("read ", len(dst))
 	select {
 	case <-ctx.Done():
@@ -77,13 +77,18 @@ func (c TestConnection) Address() address.Address {
 	return "testAddress"
 }
 
-func (c TestConnection) ServerConnectionID() *int32 {
-	var id int32 = 0
+func (c TestConnection) ServerConnectionID() *int64 {
+	var id int64 = 0
 	return &id
 }
 
 func (c TestConnection) Stale() bool {
 	return false
+}
+
+func (c TestConnection) DriverConnectionID() uint64 {
+	var id uint64 = 0
+	return id
 }
 
 func NewConnection() driver.Connection {
